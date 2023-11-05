@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+
 function Veggies() {
   const [veggie, setVeggies] = useState([]);
   useEffect(() => {
@@ -17,9 +18,8 @@ function Veggies() {
         `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`
       );
       const data = await api.json();
-
-      localStorage.setItem("veggies",JSON.stringify(data.recipes))
       setVeggies(data.recipes);
+      localStorage.setItem("veggies",JSON.stringify(data.recipes));
       console.log(data.recipes);
     }
   };
@@ -37,7 +37,7 @@ function Veggies() {
                        
                  }}
                     >
-                        {veggie.map((recipe) => {
+                        {veggie&&veggie.map((recipe) => {
                             return (
                                 <SplideSlide key={recipe.id}>
                                     <Card>
