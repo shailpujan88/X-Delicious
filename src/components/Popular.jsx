@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import { Link } from "react-router-dom";
 
 
 //fdhsb fds
@@ -29,7 +30,7 @@ function Popular() {
  return(
         <div>
          <Wrapper>
-                    <h3>Popular picks</h3>
+                    <h1>Popular picks</h1>
                     <Splide
                     options={{
                         perPage: 3,
@@ -44,9 +45,11 @@ function Popular() {
                             return (
                                 <SplideSlide key={recipe.id}>
                                     <Card>
+                                      <Link to={"/recipe/" + recipe.id}>
                                         <p>{recipe.title}</p>
                                         <img src={recipe.image} alt={recipe.title}/>
                                         <Gradient/>
+                                        </Link>
                                     </Card>
                                 </SplideSlide>
                             );
@@ -63,8 +66,9 @@ const Wrapper = styled.div`
 
 const Card = styled.div`
   min-height: 25rem;
-  border-radius:2rem;
+  border-radius:1rem;
   overflow: hidden;
+  margin-top: 50px;
   
 
   img {
